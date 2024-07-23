@@ -1,0 +1,30 @@
+# Procedure to copy a file or directory to a destination
+proc File_Copy {src dest} {
+    # Check if the source is a directory
+    if {[file isdirectory $src]} {
+        # Create the destination directory if it doesn't exist
+        file mkdir $dest
+        # Recursively copy each file/subdirectory in the source directory
+        foreach f [glob -nocomplain [file join $src *]] {
+            File_Copy $f [file join $dest [file tail $f]]
+        }
+        return
+    }
+    # If the destination is a directory, adjust the destination path
+    if {[file isdirectory $dest]} {
+        set dest [file join $dest [file tail $src]]
+    }
+    # Open the source file for reading
+    set in [open $src]
+    # Open the destination file for writing
+    set out [open $dest w]
+    # Copy the content from source to destination without adding extra newline characters
+    puts -nonewline $out [read $in]
+    # Close both files
+    close $out
+    close $in
+}
+
+# Example usage of the File_Copy procedure
+# Copy a file 1.tcl to native.txt
+File_Copy "1.tcl" "native.txt"
