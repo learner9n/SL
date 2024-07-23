@@ -1,0 +1,30 @@
+17. a) Write a Perl script to find the largest number among three numbers.
+#!/usr/bin/perl
+print "enter a value";
+$a=<stdin>;
+print "enter b value";
+$b=<stdin>;
+print "enter c value";
+$c=<stdin>;
+if($a > $b)
+{
+ if($a> $c)
+ {
+ print " $a is largest number
+ }
+ else
+ {
+ print " $c is largest number
+ }
+}
+elsif($b >$c)
+{
+ print " $b is largest number";
+}
+else
+{
+ print " $c is largest nnumber";
+}
+Write a Perl script to find the largest number among three numbers.
+print " $a is largest number\n";
+print " $c is largest
