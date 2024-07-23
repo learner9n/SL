@@ -1,0 +1,14 @@
+proc newer {file1 file2} {
+    if {![file exists $file2]} {
+        return 1
+    } else {
+        return [expr {[file mtime $file1] > [file mtime $file2]}]
+    }
+}
+set file1 "1.tcl"
+set file2 "2.tcl"
+if {[newer $file1 $file2]} {
+    puts "$file1 is newer than $file2"
+} else {
+    puts "$file2 is newer than $file1"
+}
